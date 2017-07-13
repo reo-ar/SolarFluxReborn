@@ -8,7 +8,7 @@ Include following code into your build.gradle:
 >repositories {
 >		maven {
 >				name = "APengu Maven"
->				url = "http://apengu.github.io/PenguLibs"
+>				url = "https://raw.githubusercontent.com/APengu/PenguLibs/gh-pages"
 >		}
 >}
 >
