@@ -6,14 +6,14 @@ The mod comes by default with 8 different tiers of solar panels (fully configura
 Include following code into your build.gradle:
 
 repositories {
-    maven {
-        name = "APengu Maven"
-        url = "http://apengu.github.io/PenguLibs"
-    }
+		maven {
+				name = "APengu Maven"
+				url = "http://apengu.github.io/PenguLibs"
+		}
 }
 
 dependencies {
-    deobfCompile "apengu:SolarFluxReborn:MCVERSION-SFRVERSION:deobf"
+		deobfCompile "apengu:SolarFluxReborn:MCVERSION-SFRVERSION:deobf"
 }
 
 Where "MCVERSION" is Minecraft Version and "SFRVERSION" is Solar Flux Reborn Version starting from 3.24r
