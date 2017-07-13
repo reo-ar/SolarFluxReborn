@@ -1,6 +1,8 @@
 minecraft_version=1.12
 forge_version=1.12-14.21.1.2400
-mod_version=3.23r
+hc_version=1.9.2
+bhs_version=17r
+mod_version=3.24r
 
 project_id=246974
 release_type=release

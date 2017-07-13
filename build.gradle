@@ -39,7 +39,7 @@ minecraft {
     runDir = "run"
     mappings = "snapshot_20170707"
     makeObfSourceJar = false
-	replace 'required-after:hammercore', "required-after:hammercore@[1.9.1,)"
+	replace 'required-after:hammercore', "required-after:hammercore@[${config.hc_version},)"
     replace '@VERSION@', "${config.mod_version}"
 }
 
@@ -55,10 +55,16 @@ repositories {
         name = "CoFH Maven"
         url = "http://maven.covers1624.net"
     }
+	maven {
+        name = "APengu Maven"
+        url = "http://apengu.github.io/PenguLibs"
+    }
 }
 
 dependencies {
-    deobfCompile "cofh:RedstoneFlux:1.12-2.0.0.1:universal"
+    deobfCompile "cofh:RedstoneFlux:${config.minecraft_version}-2.0.1.2:universal"
+	deobfCompile "apengu:HammerCore:${config.minecraft_version}-${config.hc_version}:deobf"
+	deobfCompile "apengu:BlackHoleStorage:${config.minecraft_version}-${config.bhs_version}:deobf"
 }
 
 processResources
@@ -83,8 +89,18 @@ task deobfJar(type: Jar) {
     }
 }
 
+task srcJar(type: Jar, dependsOn: classes) {
+    from sourceSets.main.allSource
+    classifier = 'sources'
+	manifest {
+        attributes 'FMLCorePlugin': 'com.pengu.solarfluxreborn.core.SFRCore'
+        attributes 'FMLCorePluginContainsFMLMod': 'false'
+    }
+}
+
 artifacts {
     archives deobfJar
+	archives srcJar
 }
 
 curseforge {
@@ -101,8 +117,12 @@ curseforge {
 		addArtifact(deobfJar) {
 		  displayName = "[${config.minecraft_version}] Solar Flux Reborn (Deobfuscated) - ${config.mod_version}"
 		}
+		addArtifact(srcJar) {
+		  displayName = "[${config.minecraft_version}] Hammer Core (Sources) - ${config.mod_version}"
+		}
 		relations {
             requiredLibrary 'Hammer-Core'
+			requiredLibrary 'Redstone-Flux'
             optionalLibrary 'Black-Hole-Storage'
 			optionalLibrary 'Draconic-Evolution'
         }
