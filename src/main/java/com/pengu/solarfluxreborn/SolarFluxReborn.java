@@ -18,10 +18,8 @@ import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
 import net.minecraftforge.fml.common.registry.GameRegistry;
-import net.minecraftforge.registries.IForgeRegistry;
 
 import com.pengu.hammercore.ext.TeslaAPI;
-import com.pengu.hammercore.init.SimpleRegistration;
 import com.pengu.solarfluxreborn.config.BlackHoleStorageConfigs;
 import com.pengu.solarfluxreborn.config.DraconicEvolutionConfigs;
 import com.pengu.solarfluxreborn.config.ModConfiguration;

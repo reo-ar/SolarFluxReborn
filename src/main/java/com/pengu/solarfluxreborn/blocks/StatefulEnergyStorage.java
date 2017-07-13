@@ -2,6 +2,7 @@ package com.pengu.solarfluxreborn.blocks;
 
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.energy.IEnergyStorage;
+import cofh.redstoneflux.api.IEnergyReceiver;
 
 import com.pengu.solarfluxreborn.reference.NBTConstants;
 

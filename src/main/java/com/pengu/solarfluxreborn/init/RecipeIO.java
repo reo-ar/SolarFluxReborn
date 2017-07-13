@@ -5,7 +5,6 @@ import java.util.Map;
 
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.FurnaceRecipes;
-import net.minecraft.item.crafting.IRecipe;
 
 import com.pengu.solarfluxreborn.blocks.SolarPanelBlock;
 import com.pengu.solarfluxreborn.config.BlackHoleStorageConfigs;

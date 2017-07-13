@@ -10,13 +10,15 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.energy.CapabilityEnergy;
 import net.minecraftforge.energy.IEnergyStorage;
+import cofh.redstoneflux.api.IEnergyProvider;
+import cofh.redstoneflux.api.IEnergyReceiver;
 
 import com.pengu.hammercore.ext.TeslaAPI;
 import com.pengu.hammercore.tile.TileSyncableTickable;
 import com.pengu.solarfluxreborn.network.energy.cable.CableNetwork;
 import com.pengu.solarfluxreborn.reference.Reference;
 
-public class TileAbstractCable extends TileSyncableTickable implements IEnergyStorage
+public class TileAbstractCable extends TileSyncableTickable implements IEnergyStorage, IEnergyProvider, IEnergyReceiver
 {
 	public CableNetwork network;
 	public double internal;
@@ -219,5 +221,35 @@ public class TileAbstractCable extends TileSyncableTickable implements IEnergySt
 	public boolean canReceive()
 	{
 		return true;
+	}
+	
+	@Override
+	public int getEnergyStored(EnumFacing from)
+	{
+		return getEnergyStored();
+	}
+	
+	@Override
+	public int getMaxEnergyStored(EnumFacing from)
+	{
+		return getMaxEnergyStored();
+	}
+	
+	@Override
+	public boolean canConnectEnergy(EnumFacing from)
+	{
+		return true;
+	}
+	
+	@Override
+	public int extractEnergy(EnumFacing from, int maxExtract, boolean simulate)
+	{
+		return extractEnergy(maxExtract, simulate);
+	}
+	
+	@Override
+	public int receiveEnergy(EnumFacing from, int maxReceive, boolean simulate)
+	{
+		return receiveEnergy(maxReceive, simulate);
 	}
 }

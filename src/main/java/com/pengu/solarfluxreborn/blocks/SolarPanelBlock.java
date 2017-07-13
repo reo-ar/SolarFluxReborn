@@ -8,7 +8,6 @@ import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -34,7 +33,6 @@ import com.pengu.solarfluxreborn.reference.Reference;
 import com.pengu.solarfluxreborn.te.AbstractSolarPanelTileEntity;
 import com.pengu.solarfluxreborn.te.SolarPanelTileEntity;
 import com.pengu.solarfluxreborn.utility.Lang;
-import com.pengu.solarfluxreborn.utility.Utils;
 
 public class SolarPanelBlock extends BlockContainer implements IWrenchable
 {
@@ -201,11 +199,12 @@ public class SolarPanelBlock extends BlockContainer implements IWrenchable
 	{
 		return Reference.MOD_ID + ":blocks/solar" + getTierIndex() + "_" + sub;
 	}
-
+	
 	@Override
-    public boolean onWrenchUsed(WorldLocation loc, EntityPlayer player, EnumHand hand)
-    {
-		if(player.isSneaking()) dismantleBlock(loc.getWorld(), loc.getPos());
-	    return player.isSneaking();
-    }
+	public boolean onWrenchUsed(WorldLocation loc, EntityPlayer player, EnumHand hand)
+	{
+		if(player.isSneaking())
+			dismantleBlock(loc.getWorld(), loc.getPos());
+		return player.isSneaking();
+	}
 }

@@ -92,7 +92,8 @@ public class RemoteConfigs
 	
 	public static float getSolarHeight()
 	{
-		if(solarHeight < 1 / 16F || solarHeight > 1F) solarHeight = 6 / 16F;
+		if(solarHeight < 1 / 16F || solarHeight > 1F)
+			solarHeight = 6 / 16F;
 		return solarHeight;
 	}
 }

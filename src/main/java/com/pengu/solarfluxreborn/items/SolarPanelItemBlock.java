@@ -4,7 +4,6 @@ import java.util.List;
 
 import net.minecraft.block.Block;
 import net.minecraft.client.util.ITooltipFlag;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.text.TextFormatting;
@@ -27,9 +26,9 @@ public class SolarPanelItemBlock extends ItemBlock
 	@Override
 	public void addInformation(ItemStack stack, World worldIn, List<String> tooltip, ITooltipFlag flagIn)
 	{
-	    super.addInformation(stack, worldIn, tooltip, flagIn);
-	    
-	    addChargeTooltip(tooltip, stack);
+		super.addInformation(stack, worldIn, tooltip, flagIn);
+		
+		addChargeTooltip(tooltip, stack);
 		addUpgradeCount(tooltip, stack);
 		
 		if(getBlock() instanceof AbstractSolarPanelBlock)

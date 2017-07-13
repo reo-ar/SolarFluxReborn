@@ -19,7 +19,6 @@ import org.lwjgl.opengl.GL11;
 import com.google.common.base.Predicate;
 import com.pengu.hammercore.client.DestroyStageTexture;
 import com.pengu.hammercore.client.render.tesr.TESR;
-import com.pengu.hammercore.client.render.vertex.SimpleBlockRendering;
 import com.pengu.hammercore.client.utils.RenderBlocks;
 import com.pengu.solarfluxreborn.blocks.BlockAbstractCable;
 import com.pengu.solarfluxreborn.reference.Reference;
@@ -51,8 +50,10 @@ public class RenderCustomCable extends TESR<TileCustomCable>
 	{
 		bindTexture(TextureMap.LOCATION_BLOCKS_TEXTURE);
 		TextureAtlasSprite spr = Minecraft.getMinecraft().getTextureMapBlocks().getAtlasSprite(te.getResourceConnection());
-//		if(mc.player.isSneaking())
-//			spr = Minecraft.getMinecraft().getTextureMapBlocks().getAtlasSprite(te.getResourceConnection() + "1");
+		// if(mc.player.isSneaking())
+		// spr =
+		// Minecraft.getMinecraft().getTextureMapBlocks().getAtlasSprite(te.getResourceConnection()
+		// + "1");
 		renderWire(te, x, y, z, spr, getBrightnessForRB(te, RenderBlocks.forMod(Reference.MOD_ID)));
 		if(destroyProgress > 0F)
 			renderWire(te, x, y, z, DestroyStageTexture.getAsSprite(destroyProgress), getBrightnessForRB(te, RenderBlocks.forMod(Reference.MOD_ID)));

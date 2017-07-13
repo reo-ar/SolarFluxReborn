@@ -15,6 +15,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.energy.CapabilityEnergy;
 import net.minecraftforge.energy.IEnergyStorage;
+import cofh.redstoneflux.api.IEnergyProvider;
 
 import com.google.common.collect.Maps;
 import com.google.common.collect.Range;
@@ -38,9 +39,8 @@ import com.pengu.solarfluxreborn.init.ItemsSFR;
 import com.pengu.solarfluxreborn.items.UpgradeItem;
 import com.pengu.solarfluxreborn.reference.NBTConstants;
 import com.pengu.solarfluxreborn.reference.Reference;
-import com.pengu.solarfluxreborn.utility.Utils;
 
-public class SolarPanelTileEntity extends TileSyncableTickable implements IInventory, IPowerStorage, IEnergyStorage, ITileDroppable
+public class SolarPanelTileEntity extends TileSyncableTickable implements IInventory, IPowerStorage, IEnergyStorage, ITileDroppable, IEnergyProvider
 {
 	public static final int INVENTORY_SIZE = 5;
 	public static final Range<Integer> UPGRADE_SLOTS = Range.closedOpen(0, INVENTORY_SIZE);
@@ -544,12 +544,36 @@ public class SolarPanelTileEntity extends TileSyncableTickable implements IInven
 	{
 		return false;
 	}
-
+	
 	@Override
-    public void createDrop(EntityPlayer player, World world, BlockPos pos)
-    {
+	public void createDrop(EntityPlayer player, World world, BlockPos pos)
+	{
 		WorldLocation loc = new WorldLocation(world, pos);
 		if(player != null && !player.capabilities.isCreativeMode && loc.getBlock() instanceof SolarPanelBlock)
 			((SolarPanelBlock) loc.getBlock()).dismantleBlock(world, pos);
-    }
+	}
+	
+	@Override
+	public int getEnergyStored(EnumFacing from)
+	{
+		return from != EnumFacing.UP ? getEnergyStored() : 0;
+	}
+	
+	@Override
+	public int getMaxEnergyStored(EnumFacing from)
+	{
+		return from != EnumFacing.UP ? getMaxEnergyStored() : 0;
+	}
+	
+	@Override
+	public boolean canConnectEnergy(EnumFacing from)
+	{
+		return from != EnumFacing.UP;
+	}
+	
+	@Override
+	public int extractEnergy(EnumFacing from, int maxExtract, boolean simulate)
+	{
+		return from != EnumFacing.UP ? extractEnergy(maxExtract, simulate) : 0;
+	}
 }

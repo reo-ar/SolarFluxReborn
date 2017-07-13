@@ -6,30 +6,20 @@ import java.util.List;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.item.EntityItem;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumBlockRenderType;
-import net.minecraft.util.EnumFacing;
-import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.text.TextComponentString;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.Constants.NBT;
 
-import com.pengu.hammercore.common.utils.WorldUtil;
-import com.pengu.solarfluxreborn.SolarFluxReborn;
-import com.pengu.solarfluxreborn.config.ModConfiguration;
 import com.pengu.solarfluxreborn.creativetab.ModCreativeTab;
 import com.pengu.solarfluxreborn.reference.NBTConstants;
 import com.pengu.solarfluxreborn.reference.Reference;
 import com.pengu.solarfluxreborn.te.AbstractSolarPanelTileEntity;
 import com.pengu.solarfluxreborn.te.SolarPanelTileEntity;
-import com.pengu.solarfluxreborn.utility.Lang;
-import com.pengu.solarfluxreborn.utility.Utils;
 
 public class AbstractSolarPanelBlock extends SolarPanelBlock
 {

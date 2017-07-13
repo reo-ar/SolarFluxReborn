@@ -13,6 +13,6 @@ public class TooltipFlagSFR implements ITooltipFlag
 	@Override
 	public boolean isAdvanced()
 	{
-	    return Minecraft.getMinecraft().gameSettings.advancedItemTooltips;
+		return Minecraft.getMinecraft().gameSettings.advancedItemTooltips;
 	}
 }
