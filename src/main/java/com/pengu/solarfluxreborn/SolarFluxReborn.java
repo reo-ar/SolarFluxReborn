@@ -37,7 +37,7 @@ import com.pengu.solarfluxreborn.te.SolarPanelTileEntity;
 import com.pengu.solarfluxreborn.te.cable.TileCustomCable;
 import com.pengu.solarfluxreborn.utility.SFRLog;
 
-@Mod(modid = Reference.MOD_ID, name = Reference.MOD_NAME, version = Reference.VERSION, guiFactory = "com.pengu.solarfluxreborn.config.ConfigurationGuiFactory", dependencies = "required-after:hammercore;after:blackholestorage")
+@Mod(modid = Reference.MOD_ID, name = Reference.MOD_NAME, version = Reference.VERSION, guiFactory = "com.pengu.solarfluxreborn.config.ConfigurationGuiFactory", dependencies = "required:redstoneflux;required-after:hammercore;after:blackholestorage")
 public class SolarFluxReborn
 {
 	@Mod.Instance(Reference.MOD_ID)

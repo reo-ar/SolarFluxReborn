@@ -50,7 +50,15 @@ jar {
     }
 }
 
+repositories {
+    maven {
+        name = "CoFH Maven"
+        url = "http://maven.covers1624.net"
+    }
+}
+
 dependencies {
+    deobfCompile "cofh:RedstoneFlux:1.12-2.0.0.1:universal"
 }
 
 processResources
