@@ -1,0 +1,13 @@
+{
+    "conditions": [{
+        "type": "minecraft:item_exists",
+        "item": "solarfluxreborn:wire_2"
+    }],
+    "type": "forge:ore_shaped",
+    "pattern": [ "ggg", "rrr", "ggg" ],
+    "key": {
+		"r": { "ore": "dustRedstone", "type": "forge:ore_dict" },
+		"g": { "ore": "ingotIron", "type": "forge:ore_dict" }
+    },
+    "result": { "item": "solarfluxreborn:wire_2", "count": 6 }
+}

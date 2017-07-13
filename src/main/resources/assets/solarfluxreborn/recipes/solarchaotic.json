@@ -1,0 +1,14 @@
+{
+    "conditions": [{
+        "type": "minecraft:item_exists",
+        "item": "solarfluxreborn:solarchaotic"
+    }],
+    "type": "forge:ore_shaped",
+    "pattern": [ "scs", "coc", "scs" ],
+    "key": {
+		"s": { "item": "solarfluxreborn:solardraconic" },
+		"c": { "item": "draconicevolution:awakened_core" },
+		"o": { "item": "draconicevolution:chaos_shard" }
+    },
+    "result": { "item": "solarfluxreborn:solarchaotic", "count": 2 }
+}

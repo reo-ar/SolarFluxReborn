@@ -1,0 +1,18 @@
+{
+    "conditions": [{
+        "type": "minecraft:item_exists",
+        "item": "solarfluxreborn:solar5"
+    }, {
+        "type": "minecraft:item_exists",
+        "item": "solarfluxreborn:unpreparedsolar5"
+    }],
+    "type": "forge:ore_shaped",
+    "pattern": [ "ppp", "scs", "sbs" ],
+    "key": {
+		"s": { "item": "solarfluxreborn:solar4" },
+		"p": { "item": "solarfluxreborn:solarcell4" },
+		"c": { "item": "minecraft:redstone_lamp" },
+		"b": { "ore": "blockDiamond", "type": "forge:ore_dict" }
+    },
+    "result": { "item": "solarfluxreborn:unpreparedsolar5", "count": 2 }
+}

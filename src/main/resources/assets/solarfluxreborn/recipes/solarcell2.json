@@ -1,0 +1,15 @@
+{
+    "conditions": [{
+        "type": "minecraft:item_exists",
+        "item": "solarfluxreborn:solarcell2"
+    }],
+    "type": "forge:ore_shaped",
+    "pattern": [ "clc", "lcl", "msm" ],
+    "key": {
+		"l": { "ore": "gemLapis", "type": "forge:ore_dict" },
+		"m": { "item": "solarfluxreborn:mirror" },
+		"s": { "item": "solarfluxreborn:solarcell1" },
+		"c": { "item": "minecraft:clay_ball" }
+    },
+    "result": { "item": "solarfluxreborn:solarcell2" }
+}

@@ -1,0 +1,20 @@
+{
+    "conditions": [{
+        "type": "minecraft:item_exists",
+        "item": "solarfluxreborn:solardarkmatter"
+    }, {
+        "type": "minecraft:item_exists",
+        "item": "solarfluxreborn:solarcelldarkmatter"
+    }, {
+        "type": "minecraft:item_exists",
+        "item": "solarfluxreborn:unprepareddmsolar"
+    }],
+    "type": "forge:ore_shaped",
+    "pattern": [ "ccc", "sds", "sds" ],
+    "key": {
+		"c": { "item": "solarfluxreborn:solarcelldarkmatter" },
+		"s": { "item": "solarfluxreborn:solar7" },
+		"d": { "ore": "matterDark", "type": "forge:ore_dict" }
+    },
+    "result": { "item": "solarfluxreborn:unprepareddmsolar", "count": 2 }
+}

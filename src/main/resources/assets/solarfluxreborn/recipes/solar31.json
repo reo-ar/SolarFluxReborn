@@ -1,0 +1,21 @@
+{
+    "conditions": [{
+        "type": "minecraft:item_exists",
+        "item": "solarfluxreborn:solar3"
+    }, {
+		"type": "forge:not",
+		"value": {
+			"type": "minecraft:item_exists",
+			"item": "solarfluxreborn:unpreparedsolar3"
+		}
+	}],
+    "type": "forge:ore_shaped",
+    "pattern": [ "ppp", "scs", "sbs" ],
+    "key": {
+		"s": { "item": "solarfluxreborn:solar2" },
+		"p": { "item": "solarfluxreborn:solarcell2" },
+		"c": { "item": "minecraft:clock" },
+		"b": { "ore": "blockIron", "type": "forge:ore_dict" }
+    },
+    "result": { "item": "solarfluxreborn:solar3", "count": 2 }
+}

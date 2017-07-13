@@ -1,0 +1,13 @@
+{
+    "conditions": [{
+        "type": "minecraft:item_exists",
+        "item": "solarfluxreborn:solar1"
+    }],
+    "type": "forge:ore_shaped",
+    "pattern": [ "sss", "sps", "sss" ],
+    "key": {
+		"s": { "item": "solarfluxreborn:solar0" },
+		"p": { "item": "minecraft:piston" }
+    },
+    "result": { "item": "solarfluxreborn:solar1" }
+}

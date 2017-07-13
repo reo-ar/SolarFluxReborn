@@ -1,0 +1,16 @@
+{
+    "conditions": [{
+        "type": "minecraft:item_exists",
+        "item": "solarfluxreborn:solardarkmatter"
+    }],
+    "type": "forge:ore_shaped",
+    "pattern": [ "ppp", "bmb", "gcg" ],
+    "key": {
+		"p": { "item": "minecraft:sea_lantern" },
+		"g": { "ore": "glowstone", "type": "forge:ore_dict" },
+		"m": { "ore": "matterDark", "type": "forge:ore_dict" },
+		"c": { "item": "solarfluxreborn:solarcell4" },
+		"b": { "item": "minecraft:blaze_rod" }
+    },
+    "result": { "item": "solarfluxreborn:solardarkmatter", "count": 2 }
+}

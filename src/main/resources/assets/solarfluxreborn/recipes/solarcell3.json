@@ -1,0 +1,15 @@
+{
+    "conditions": [{
+        "type": "minecraft:item_exists",
+        "item": "solarfluxreborn:solarcell3"
+    }],
+    "type": "forge:ore_shaped",
+    "pattern": [ "ggg", "lll", "oco" ],
+    "key": {
+		"g": { "ore": "blockGlass", "type": "forge:ore_dict" },
+		"l": { "ore": "dustGlowstone", "type": "forge:ore_dict" },
+		"o": { "ore": "obsidian", "type": "forge:ore_dict" },
+		"c": { "item": "solarfluxreborn:solarcell2" }
+    },
+    "result": { "item": "solarfluxreborn:solarcell3" }
+}

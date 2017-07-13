@@ -1,0 +1,14 @@
+{
+    "conditions": [{
+        "type": "minecraft:item_exists",
+        "item": "solarfluxreborn:solar0"
+    }],
+    "type": "forge:ore_shaped",
+    "pattern": [ "mmm", "prp", "ppp" ],
+    "key": {
+		"m": { "item": "solarfluxreborn:mirror" },
+		"p": { "ore": "plankWood", "type": "forge:ore_dict" },
+		"r": { "ore": "dustRedstone", "type": "forge:ore_dict" }
+    },
+    "result": { "item": "solarfluxreborn:solar0" }
+}

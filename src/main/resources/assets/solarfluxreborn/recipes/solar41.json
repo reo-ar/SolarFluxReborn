@@ -1,0 +1,21 @@
+{
+    "conditions": [{
+        "type": "minecraft:item_exists",
+        "item": "solarfluxreborn:solar4"
+    }, {
+		"type": "forge:not",
+		"value": {
+			"type": "minecraft:item_exists",
+			"item": "solarfluxreborn:unpreparedsolar4"
+		}
+	}],
+    "type": "forge:ore_shaped",
+    "pattern": [ "ppp", "scs", "sbs" ],
+    "key": {
+		"s": { "item": "solarfluxreborn:solar3" },
+		"p": { "item": "solarfluxreborn:solarcell3" },
+		"c": { "ore": "glowstone", "type": "forge:ore_dict" },
+		"b": { "ore": "blockGold", "type": "forge:ore_dict" }
+    },
+    "result": { "item": "solarfluxreborn:solar4", "count": 2 }
+}

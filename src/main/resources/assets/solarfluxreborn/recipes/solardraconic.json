@@ -1,0 +1,14 @@
+{
+    "conditions": [{
+        "type": "minecraft:item_exists",
+        "item": "solarfluxreborn:solardraconic"
+    }],
+    "type": "forge:ore_shaped",
+    "pattern": [ "scs", "cec", "scs" ],
+    "key": {
+		"s": { "item": "solarfluxreborn:solar7" },
+		"c": { "item": "draconicevolution:wyvern_core" },
+		"e": { "item": "draconicevolution:draconic_energy_core" }
+    },
+    "result": { "item": "solarfluxreborn:solardraconic", "count": 2 }
+}

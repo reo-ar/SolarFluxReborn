@@ -1,0 +1,13 @@
+{
+    "conditions": [{
+        "type": "minecraft:item_exists",
+        "item": "solarfluxreborn:mirror"
+    }],
+    "type": "forge:ore_shaped",
+    "pattern": [ "ggg", " i " ],
+    "key": {
+		"g": { "ore": "blockGlass", "type": "forge:ore_dict" },
+		"i": { "ore": "ingotIron", "type": "forge:ore_dict" }
+    },
+    "result": { "item": "solarfluxreborn:mirror", "count": 2 }
+}

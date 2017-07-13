@@ -1,0 +1,17 @@
+{
+    "conditions": [{
+        "type": "minecraft:item_exists",
+        "item": "solarfluxreborn:solar6"
+    }, {
+        "type": "minecraft:item_exists",
+        "item": "solarfluxreborn:unpreparedsolar6"
+    }],
+    "type": "forge:ore_shaped",
+    "pattern": [ "ppp", "scs", "scs" ],
+    "key": {
+		"s": { "item": "solarfluxreborn:solar5" },
+		"p": { "item": "solarfluxreborn:solarcell4" },
+		"c": { "item": "minecraft:dragon_breath" }
+    },
+    "result": { "item": "solarfluxreborn:unpreparedsolar6", "count": 2 }
+}

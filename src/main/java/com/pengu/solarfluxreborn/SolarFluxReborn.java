@@ -82,9 +82,7 @@ public class SolarFluxReborn
 	@SubscribeEvent
 	public void registerRecipes(RegistryEvent.Register<IRecipe> evt)
 	{
-		IForgeRegistry<IRecipe> reg = evt.getRegistry();
 		RecipeIO.reload();
-		RecipeIO.r.stream().filter(t -> t != null).forEach(t -> reg.register(t));
 	}
 	
 	@EventHandler

@@ -1,0 +1,16 @@
+{
+    "conditions": [{
+        "type": "minecraft:item_exists",
+        "item": "solarfluxreborn:solarcell4"
+    }],
+    "type": "forge:ore_shaped",
+    "pattern": [ "bbb", "gdg", "qcq" ],
+    "key": {
+		"g": { "ore": "dustGlowstone", "type": "forge:ore_dict" },
+		"b": { "item": "minecraft:blaze_rod" },
+		"d": { "ore": "blockDiamond", "type": "forge:ore_dict" },
+		"q": { "ore": "blockQuartz", "type": "forge:ore_dict" },
+		"c": { "item": "solarfluxreborn:solarcell3" }
+    },
+    "result": { "item": "solarfluxreborn:solarcell4" }
+}
