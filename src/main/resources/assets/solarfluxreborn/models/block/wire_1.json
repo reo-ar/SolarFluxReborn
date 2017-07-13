@@ -1,6 +1,0 @@
-{
-	"parent": "solarfluxreborn:block/wire",
-	"textures": {
-		"txt": "solarfluxreborn:blocks/wire_0"
-	}
-}

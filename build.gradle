@@ -1,0 +1,102 @@
+buildscript {
+    repositories {
+        jcenter()
+        maven {
+            name = "forge"
+            url = "http://files.minecraftforge.net/maven"
+        }
+    }
+    dependencies {
+        classpath 'net.minecraftforge.gradle:ForgeGradle:2.3-SNAPSHOT'
+    }
+}
+
+plugins {
+    id 'com.matthewprenger.cursegradle' version '1.0.8'
+}
+
+apply plugin: 'net.minecraftforge.gradle.forge'
+
+ext.configFile = file "build.txt"
+
+configFile.withReader {
+    def prop = new Properties()
+    prop.load(it)
+    project.ext.config = new ConfigSlurper().parse prop
+}
+
+version = "${config.mod_version}"
+group = "com.pengu.solarfluxreborn"
+archivesBaseName = "SolarFluxReborn_${config.minecraft_version}"
+
+sourceCompatibility = targetCompatibility = "1.8"
+compileJava {
+    sourceCompatibility = targetCompatibility = "1.8"
+}
+
+minecraft {
+    version = "${config.forge_version}"
+    runDir = "run"
+    mappings = "snapshot_20170707"
+    makeObfSourceJar = false
+	replace 'required-after:hammercore', "required-after:hammercore@[1.9.1,)"
+    replace '@VERSION@', "${config.mod_version}"
+}
+
+jar {
+    manifest {
+        attributes 'FMLCorePlugin': 'com.pengu.solarfluxreborn.core.SFRCore'
+        attributes 'FMLCorePluginContainsFMLMod': 'false'
+    }
+}
+
+dependencies {
+}
+
+processResources
+{
+    inputs.property "version", project.version
+    inputs.property "mcversion", project.minecraft.version
+    from(sourceSets.main.resources.srcDirs) {
+        include 'mcmod.info'
+        expand 'version':project.version, 'mcversion':project.minecraft.version
+    }
+    from(sourceSets.main.resources.srcDirs) {
+        exclude 'mcmod.info'
+    }
+}
+
+task deobfJar(type: Jar) {
+    from sourceSets.main.output
+    classifier = 'deobf'
+    manifest {
+        attributes 'FMLCorePlugin': 'com.pengu.solarfluxreborn.core.SFRCore'
+        attributes 'FMLCorePluginContainsFMLMod': 'false'
+    }
+}
+
+artifacts {
+    archives deobfJar
+}
+
+curseforge {
+	apiKey = System.env.CURSEFORGE_API_KEY
+	project {
+		id = "${config.project_id}"
+		changelogType = 'html'
+		changelog = ""
+		releaseType = "${config.release_type}"
+		addGameVersion "${config.minecraft_version}"
+		mainArtifact(jar) {
+		  displayName = "[${config.minecraft_version}] Solar Flux Reborn - ${config.mod_version}"
+		}
+		addArtifact(deobfJar) {
+		  displayName = "[${config.minecraft_version}] Solar Flux Reborn (Deobfuscated) - ${config.mod_version}"
+		}
+		relations {
+            requiredLibrary 'Hammer-Core'
+            optionalLibrary 'Black-Hole-Storage'
+			optionalLibrary 'Draconic-Evolution'
+        }
+	}
+}

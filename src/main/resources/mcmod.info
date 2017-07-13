@@ -1,15 +1,12 @@
 [
-{
-  "modid": "SolarFlux",
-  "name": "Solar Flux",
-  "description": "Solar Panels producing Redstone Flux",
-  "version": "${version}",
-  "mcversion": "${mcversion}",
-  "url": "",
-  "updateUrl": "",
-  "authorList": ["MrDimkas_Studio"],
-  "logoFile": "",
-  "screenshots": [],
-  "dependencies": []
-}
+    {
+        "modid": "solarfluxreborn",
+        "name": "Solar Flux Reborn",
+        "description": "Solar Panels producing Redstone Flux",
+        "version": "${version}",
+        "mcversion": "1.12",
+        "authorList": ["APengu"],
+        "logoFile": "",
+        "credits": "Thanks to TheYulife for making textures."
+    }
 ]
