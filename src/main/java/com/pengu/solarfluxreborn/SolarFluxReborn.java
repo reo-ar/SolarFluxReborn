@@ -2,10 +2,8 @@ package com.pengu.solarfluxreborn;
 
 import java.io.File;
 
-import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.SidedProxy;
@@ -15,7 +13,6 @@ import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLServerStartedEvent;
 import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
-import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 
@@ -75,12 +72,6 @@ public class SolarFluxReborn
 		}
 		
 		ItemsSFR.initialize();
-	}
-	
-	@SubscribeEvent
-	public void registerRecipes(RegistryEvent.Register<IRecipe> evt)
-	{
-		RecipeIO.reload();
 	}
 	
 	@EventHandler

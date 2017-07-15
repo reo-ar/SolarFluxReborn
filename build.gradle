@@ -118,7 +118,7 @@ curseforge {
 		  displayName = "[${config.minecraft_version}] Solar Flux Reborn (Deobfuscated) - ${config.mod_version}"
 		}
 		addArtifact(srcJar) {
-		  displayName = "[${config.minecraft_version}] Hammer Core (Sources) - ${config.mod_version}"
+		  displayName = "[${config.minecraft_version}] Solar Flux Reborn (Sources) - ${config.mod_version}"
 		}
 		relations {
             requiredLibrary 'Hammer-Core'

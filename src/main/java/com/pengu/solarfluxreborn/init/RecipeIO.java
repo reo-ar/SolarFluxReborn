@@ -153,7 +153,7 @@ public class RecipeIO
 		public FurnaceRecipe(ItemStack in, ItemStack out)
 		{
 			this(in, out, 0);
-		} // no xp
+		}
 		
 		public FurnaceRecipe(ItemStack in, ItemStack out, float xp)
 		{
