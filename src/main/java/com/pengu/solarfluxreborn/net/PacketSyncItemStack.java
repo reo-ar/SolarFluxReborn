@@ -1,5 +1,9 @@
 package com.pengu.solarfluxreborn.net;
 
+import com.pengu.hammercore.common.InterItemStack;
+import com.pengu.hammercore.net.packetAPI.iPacket;
+import com.pengu.hammercore.net.packetAPI.iPacketListener;
+
 import net.minecraft.client.Minecraft;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -7,16 +11,12 @@ import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-import com.pengu.hammercore.common.InterItemStack;
-import com.pengu.hammercore.net.packetAPI.IPacket;
-import com.pengu.hammercore.net.packetAPI.IPacketListener;
-
-public class PacketSyncItemStack implements IPacket, IPacketListener<PacketSyncItemStack, IPacket>
+public class PacketSyncItemStack implements iPacket, iPacketListener<PacketSyncItemStack, iPacket>
 {
 	public ItemStack stack = InterItemStack.NULL_STACK;
 	
 	@Override
-	public IPacket onArrived(PacketSyncItemStack packet, MessageContext context)
+	public iPacket onArrived(PacketSyncItemStack packet, MessageContext context)
 	{
 		if(context.side == Side.CLIENT)
 			packet.sendClient();

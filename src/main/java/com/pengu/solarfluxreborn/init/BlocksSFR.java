@@ -2,11 +2,6 @@ package com.pengu.solarfluxreborn.init;
 
 import java.util.List;
 
-import net.minecraft.block.Block;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemBlock;
-import net.minecraftforge.fml.common.registry.GameRegistry;
-
 import com.google.common.collect.Lists;
 import com.pengu.solarfluxreborn.blocks.AbstractSolarPanelBlock;
 import com.pengu.solarfluxreborn.blocks.BlockCable320;
@@ -20,6 +15,11 @@ import com.pengu.solarfluxreborn.items.CableItemBlock;
 import com.pengu.solarfluxreborn.items.SolarPanelItemBlock;
 import com.pengu.solarfluxreborn.reference.Reference;
 import com.pengu.solarfluxreborn.utility.MetricUnits;
+
+import net.minecraft.block.Block;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemBlock;
+import net.minecraftforge.fml.common.registry.GameRegistry;
 
 public class BlocksSFR
 {
@@ -89,7 +89,7 @@ public class BlocksSFR
 		block.setRegistryName(Reference.MOD_ID, name);
 		GameRegistry.findRegistry(Block.class).register(block);
 		GameRegistry.findRegistry(Item.class).register(ib);
-		com.pengu.hammercore.init.ItemsHC.items.add(ib);
+		com.pengu.hammercore.core.init.ItemsHC.items.add(ib);
 		return block;
 	}
 }

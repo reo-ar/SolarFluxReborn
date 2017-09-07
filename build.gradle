@@ -37,7 +37,7 @@ compileJava {
 minecraft {
     version = "${config.forge_version}"
     runDir = "run"
-    mappings = "snapshot_20170707"
+    mappings = "snapshot_20170624"
     makeObfSourceJar = false
 	replace 'required-after:hammercore', "required-after:hammercore@[${config.hc_version},)"
     replace '@VERSION@', "${config.mod_version}"
@@ -62,7 +62,7 @@ repositories {
 }
 
 dependencies {
-    deobfCompile "cofh:RedstoneFlux:${config.minecraft_version}-2.0.1.2:universal"
+    deobfCompile "cofh:RedstoneFlux:1.12-2.0.1.2:universal"
 	deobfCompile "apengu:HammerCore:${config.minecraft_version}-${config.hc_version}:deobf"
 	deobfCompile "apengu:BlackHoleStorage:${config.minecraft_version}-${config.bhs_version}:deobf"
 }

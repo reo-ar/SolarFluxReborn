@@ -2,21 +2,6 @@ package com.pengu.solarfluxreborn;
 
 import java.io.File;
 
-import net.minecraft.util.text.TextFormatting;
-import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.common.Mod.EventHandler;
-import net.minecraftforge.fml.common.SidedProxy;
-import net.minecraftforge.fml.common.event.FMLInitializationEvent;
-import net.minecraftforge.fml.common.event.FMLInterModComms;
-import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
-import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
-import net.minecraftforge.fml.common.event.FMLServerStartedEvent;
-import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
-import net.minecraftforge.fml.common.network.NetworkRegistry;
-import net.minecraftforge.fml.common.registry.GameRegistry;
-
-import com.pengu.hammercore.ext.TeslaAPI;
 import com.pengu.solarfluxreborn.config.BlackHoleStorageConfigs;
 import com.pengu.solarfluxreborn.config.DraconicEvolutionConfigs;
 import com.pengu.solarfluxreborn.config.ModConfiguration;
@@ -31,6 +16,19 @@ import com.pengu.solarfluxreborn.te.AbstractSolarPanelTileEntity;
 import com.pengu.solarfluxreborn.te.SolarPanelTileEntity;
 import com.pengu.solarfluxreborn.te.cable.TileCustomCable;
 import com.pengu.solarfluxreborn.utility.SFRLog;
+
+import net.minecraft.util.text.TextFormatting;
+import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.common.Mod.EventHandler;
+import net.minecraftforge.fml.common.SidedProxy;
+import net.minecraftforge.fml.common.event.FMLInitializationEvent;
+import net.minecraftforge.fml.common.event.FMLInterModComms;
+import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
+import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import net.minecraftforge.fml.common.event.FMLServerStartedEvent;
+import net.minecraftforge.fml.common.network.NetworkRegistry;
+import net.minecraftforge.fml.common.registry.GameRegistry;
 
 @Mod(modid = Reference.MOD_ID, name = Reference.MOD_NAME, version = Reference.VERSION, guiFactory = "com.pengu.solarfluxreborn.config.ConfigurationGuiFactory", dependencies = "required-after:redstoneflux;required-after:hammercore;after:blackholestorage")
 public class SolarFluxReborn
@@ -88,14 +86,6 @@ public class SolarFluxReborn
 	public void postInit(FMLPostInitializationEvent evt)
 	{
 		proxy.postInit();
-	}
-	
-	@EventHandler
-	public void loadWorld(FMLServerStartingEvent e)
-	{
-		SFRLog.info("Loading TeslaAPI...");
-		int classesLoaded = TeslaAPI.refreshTeslaClassData();
-		SFRLog.info("TeslaAPI loaded " + classesLoaded + "/" + TeslaAPI.allClasses.size() + " required classes.");
 	}
 	
 	@EventHandler

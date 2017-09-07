@@ -15,7 +15,7 @@ import com.pengu.solarfluxreborn.utility.SFRLog;
 public class RemoteConfigs
 {
 	public static double Cable1, Cable2, Cable3;
-	
+	public static boolean inherited = false;
 	private static final List<TierConfiguration> mTierConfigurations = new ArrayList<>();
 	private static float solarHeight;
 	
@@ -27,6 +27,7 @@ public class RemoteConfigs
 		BlockCable3200.TRANSFER_RATE = Cable2;
 		BlockCable320000.TRANSFER_RATE = Cable3;
 		solarHeight = ModConfiguration.getSolarThickness();
+		inherited = false;
 		SFRLog.info("...Fine!");
 	}
 	
@@ -78,6 +79,7 @@ public class RemoteConfigs
 			BlockCable3200.TRANSFER_RATE = ois.readDouble();
 			BlockCable320000.TRANSFER_RATE = ois.readDouble();
 			solarHeight = ois.readFloat();
+			inherited = true;
 			
 			SFRLog.info("...Fine!");
 		} catch(Throwable err)
@@ -93,7 +95,7 @@ public class RemoteConfigs
 	public static float getSolarHeight()
 	{
 		if(solarHeight < 1 / 16F || solarHeight > 1F)
-			solarHeight = 6 / 16F;
+			solarHeight = 1 / 16F;
 		return solarHeight;
 	}
 }

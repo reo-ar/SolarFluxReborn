@@ -3,6 +3,13 @@ package com.pengu.solarfluxreborn.te.cable;
 import java.util.HashSet;
 import java.util.Set;
 
+import com.pengu.hammercore.core.ext.TeslaAPI;
+import com.pengu.hammercore.tile.TileSyncableTickable;
+import com.pengu.solarfluxreborn.network.energy.cable.CableNetwork;
+import com.pengu.solarfluxreborn.reference.Reference;
+
+import cofh.redstoneflux.api.IEnergyProvider;
+import cofh.redstoneflux.api.IEnergyReceiver;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
@@ -10,13 +17,6 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.energy.CapabilityEnergy;
 import net.minecraftforge.energy.IEnergyStorage;
-import cofh.redstoneflux.api.IEnergyProvider;
-import cofh.redstoneflux.api.IEnergyReceiver;
-
-import com.pengu.hammercore.ext.TeslaAPI;
-import com.pengu.hammercore.tile.TileSyncableTickable;
-import com.pengu.solarfluxreborn.network.energy.cable.CableNetwork;
-import com.pengu.solarfluxreborn.reference.Reference;
 
 public class TileAbstractCable extends TileSyncableTickable implements IEnergyStorage, IEnergyProvider, IEnergyReceiver
 {

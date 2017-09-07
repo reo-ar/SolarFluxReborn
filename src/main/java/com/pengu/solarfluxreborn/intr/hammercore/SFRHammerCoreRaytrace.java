@@ -1,17 +1,17 @@
 package com.pengu.solarfluxreborn.intr.hammercore;
 
-import net.minecraft.block.Block;
-
-import com.pengu.hammercore.api.mhb.IRayCubeRegistry;
-import com.pengu.hammercore.api.mhb.IRayRegistry;
 import com.pengu.hammercore.api.mhb.RaytracePlugin;
+import com.pengu.hammercore.api.mhb.iRayCubeRegistry;
+import com.pengu.hammercore.api.mhb.iRayRegistry;
 import com.pengu.solarfluxreborn.blocks.BlockAbstractCable;
 
+import net.minecraft.block.Block;
+
 @RaytracePlugin
-public class SFRHammerCoreRaytrace implements IRayRegistry
+public class SFRHammerCoreRaytrace implements iRayRegistry
 {
 	@Override
-	public void registerCubes(IRayCubeRegistry cube)
+	public void registerCubes(iRayCubeRegistry cube)
 	{
 		Block.REGISTRY.getKeys().forEach(rl ->
 		{

@@ -3,6 +3,19 @@ package com.pengu.solarfluxreborn.blocks;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.pengu.hammercore.common.iWrenchable;
+import com.pengu.hammercore.common.utils.WorldUtil;
+import com.pengu.hammercore.utils.WorldLocation;
+import com.pengu.solarfluxreborn.SolarFluxReborn;
+import com.pengu.solarfluxreborn.config.ModConfiguration;
+import com.pengu.solarfluxreborn.config.RemoteConfigs;
+import com.pengu.solarfluxreborn.creativetab.CreativeTabSFR;
+import com.pengu.solarfluxreborn.reference.NBTConstants;
+import com.pengu.solarfluxreborn.reference.Reference;
+import com.pengu.solarfluxreborn.te.AbstractSolarPanelTileEntity;
+import com.pengu.solarfluxreborn.te.SolarPanelTileEntity;
+import com.pengu.solarfluxreborn.utility.Lang;
+
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
@@ -21,20 +34,7 @@ import net.minecraft.util.text.TextComponentString;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
-import com.pengu.hammercore.common.IWrenchable;
-import com.pengu.hammercore.common.utils.WorldUtil;
-import com.pengu.hammercore.utils.WorldLocation;
-import com.pengu.solarfluxreborn.SolarFluxReborn;
-import com.pengu.solarfluxreborn.config.ModConfiguration;
-import com.pengu.solarfluxreborn.config.RemoteConfigs;
-import com.pengu.solarfluxreborn.creativetab.ModCreativeTab;
-import com.pengu.solarfluxreborn.reference.NBTConstants;
-import com.pengu.solarfluxreborn.reference.Reference;
-import com.pengu.solarfluxreborn.te.AbstractSolarPanelTileEntity;
-import com.pengu.solarfluxreborn.te.SolarPanelTileEntity;
-import com.pengu.solarfluxreborn.utility.Lang;
-
-public class SolarPanelBlock extends BlockContainer implements IWrenchable
+public class SolarPanelBlock extends BlockContainer implements iWrenchable
 {
 	private final int mTierIndex;
 	
@@ -43,7 +43,7 @@ public class SolarPanelBlock extends BlockContainer implements IWrenchable
 		super(Material.IRON);
 		setUnlocalizedName(Reference.MOD_ID + ":" + pName);
 		mTierIndex = pTierIndex;
-		setCreativeTab(ModCreativeTab.MOD_TAB);
+		setCreativeTab(CreativeTabSFR.MOD_TAB);
 		setHardness(3.0F);
 		setHarvestLevel("pickaxe", 0);
 		setResistance(5.0F);

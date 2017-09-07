@@ -6,7 +6,7 @@ import net.minecraft.item.ItemStack;
 import com.pengu.solarfluxreborn.init.ItemsSFR;
 import com.pengu.solarfluxreborn.reference.Reference;
 
-public class ModCreativeTab
+public class CreativeTabSFR
 {
 	public static final CreativeTabs MOD_TAB = new CreativeTabs(Reference.MOD_ID.toLowerCase())
 	{

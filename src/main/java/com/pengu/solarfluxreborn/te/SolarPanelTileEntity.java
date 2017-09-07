@@ -2,6 +2,30 @@ package com.pengu.solarfluxreborn.te;
 
 import java.util.Map;
 
+import com.google.common.collect.Maps;
+import com.google.common.collect.Range;
+import com.pengu.hammercore.common.InterItemStack;
+import com.pengu.hammercore.common.capabilities.CapabilityEJ;
+import com.pengu.hammercore.common.inventory.InventoryNonTile;
+import com.pengu.hammercore.energy.iPowerStorage;
+import com.pengu.hammercore.tile.TileSyncableTickable;
+import com.pengu.hammercore.tile.iTileDroppable;
+import com.pengu.hammercore.utils.WorldLocation;
+import com.pengu.solarfluxreborn.blocks.SolarPanelBlock;
+import com.pengu.solarfluxreborn.blocks.StatefulEnergyStorage;
+import com.pengu.solarfluxreborn.blocks.modules.EnergySharingModule;
+import com.pengu.solarfluxreborn.blocks.modules.iTileEntityModule;
+import com.pengu.solarfluxreborn.blocks.modules.SimpleEnergyDispenserModule;
+import com.pengu.solarfluxreborn.blocks.modules.TraversalEnergyDispenserModule;
+import com.pengu.solarfluxreborn.config.ModConfiguration;
+import com.pengu.solarfluxreborn.config.RemoteConfigs;
+import com.pengu.solarfluxreborn.config.TierConfiguration;
+import com.pengu.solarfluxreborn.init.ItemsSFR;
+import com.pengu.solarfluxreborn.items.UpgradeItem;
+import com.pengu.solarfluxreborn.reference.NBTConstants;
+import com.pengu.solarfluxreborn.reference.Reference;
+
+import cofh.redstoneflux.api.IEnergyProvider;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.Item;
@@ -15,32 +39,8 @@ import net.minecraft.world.World;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.energy.CapabilityEnergy;
 import net.minecraftforge.energy.IEnergyStorage;
-import cofh.redstoneflux.api.IEnergyProvider;
 
-import com.google.common.collect.Maps;
-import com.google.common.collect.Range;
-import com.pengu.hammercore.common.InterItemStack;
-import com.pengu.hammercore.common.capabilities.CapabilityEJ;
-import com.pengu.hammercore.common.inventory.InventoryNonTile;
-import com.pengu.hammercore.energy.IPowerStorage;
-import com.pengu.hammercore.tile.ITileDroppable;
-import com.pengu.hammercore.tile.TileSyncableTickable;
-import com.pengu.hammercore.utils.WorldLocation;
-import com.pengu.solarfluxreborn.blocks.SolarPanelBlock;
-import com.pengu.solarfluxreborn.blocks.StatefulEnergyStorage;
-import com.pengu.solarfluxreborn.blocks.modules.EnergySharingModule;
-import com.pengu.solarfluxreborn.blocks.modules.ITileEntityModule;
-import com.pengu.solarfluxreborn.blocks.modules.SimpleEnergyDispenserModule;
-import com.pengu.solarfluxreborn.blocks.modules.TraversalEnergyDispenserModule;
-import com.pengu.solarfluxreborn.config.ModConfiguration;
-import com.pengu.solarfluxreborn.config.RemoteConfigs;
-import com.pengu.solarfluxreborn.config.TierConfiguration;
-import com.pengu.solarfluxreborn.init.ItemsSFR;
-import com.pengu.solarfluxreborn.items.UpgradeItem;
-import com.pengu.solarfluxreborn.reference.NBTConstants;
-import com.pengu.solarfluxreborn.reference.Reference;
-
-public class SolarPanelTileEntity extends TileSyncableTickable implements IInventory, IPowerStorage, IEnergyStorage, ITileDroppable, IEnergyProvider
+public class SolarPanelTileEntity extends TileSyncableTickable implements IInventory, iPowerStorage, IEnergyStorage, iTileDroppable, IEnergyProvider
 {
 	public static final int INVENTORY_SIZE = 5;
 	public static final Range<Integer> UPGRADE_SLOTS = Range.closedOpen(0, INVENTORY_SIZE);
@@ -49,8 +49,8 @@ public class SolarPanelTileEntity extends TileSyncableTickable implements IInven
 	 * Index of this tier of SolarPanel.
 	 */
 	private int mTierIndex;
-	private ITileEntityModule mEnergySharingModule;
-	private ITileEntityModule mEnergyDispenserModule = new SimpleEnergyDispenserModule(this);
+	private iTileEntityModule mEnergySharingModule;
+	private iTileEntityModule mEnergyDispenserModule = new SimpleEnergyDispenserModule(this);
 	/**
 	 * The amount of RF currently generated per tick.
 	 */

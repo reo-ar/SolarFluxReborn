@@ -4,6 +4,14 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.google.common.collect.Lists;
+import com.pengu.hammercore.core.ext.TeslaAPI;
+import com.pengu.solarfluxreborn.blocks.StatefulEnergyStorage;
+import com.pengu.solarfluxreborn.config.ModConfiguration;
+import com.pengu.solarfluxreborn.init.ItemsSFR;
+import com.pengu.solarfluxreborn.te.AbstractSolarPanelTileEntity;
+import com.pengu.solarfluxreborn.te.SolarPanelTileEntity;
+
 import net.minecraft.block.BlockFurnace;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityFurnace;
@@ -11,14 +19,6 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.energy.CapabilityEnergy;
 import net.minecraftforge.energy.IEnergyStorage;
-
-import com.google.common.collect.Lists;
-import com.pengu.hammercore.ext.TeslaAPI;
-import com.pengu.solarfluxreborn.blocks.StatefulEnergyStorage;
-import com.pengu.solarfluxreborn.config.ModConfiguration;
-import com.pengu.solarfluxreborn.init.ItemsSFR;
-import com.pengu.solarfluxreborn.te.AbstractSolarPanelTileEntity;
-import com.pengu.solarfluxreborn.te.SolarPanelTileEntity;
 
 /**
  * Module used to distribute energy to neighbor blocks.

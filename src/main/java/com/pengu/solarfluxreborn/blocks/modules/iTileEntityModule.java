@@ -1,6 +1,6 @@
 package com.pengu.solarfluxreborn.blocks.modules;
 
-public interface ITileEntityModule
+public interface iTileEntityModule
 {
 	void tick();
 }

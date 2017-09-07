@@ -1,12 +1,12 @@
 package com.pengu.solarfluxreborn;
 
-import net.minecraft.entity.player.EntityPlayerMP;
-import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-import net.minecraftforge.fml.common.gameevent.PlayerEvent.PlayerLoggedInEvent;
-
 import com.pengu.hammercore.annotations.MCFBus;
 import com.pengu.hammercore.net.HCNetwork;
 import com.pengu.solarfluxreborn.net.PacketMakeRemoteConfigs;
+
+import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.common.gameevent.PlayerEvent.PlayerLoggedInEvent;
 
 @MCFBus
 public class SyncManager

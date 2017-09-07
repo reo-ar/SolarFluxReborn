@@ -3,6 +3,12 @@ package com.pengu.solarfluxreborn.blocks;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.pengu.solarfluxreborn.creativetab.CreativeTabSFR;
+import com.pengu.solarfluxreborn.reference.NBTConstants;
+import com.pengu.solarfluxreborn.reference.Reference;
+import com.pengu.solarfluxreborn.te.AbstractSolarPanelTileEntity;
+import com.pengu.solarfluxreborn.te.SolarPanelTileEntity;
+
 import net.minecraft.block.SoundType;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EntityLivingBase;
@@ -14,12 +20,6 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.Constants.NBT;
-
-import com.pengu.solarfluxreborn.creativetab.ModCreativeTab;
-import com.pengu.solarfluxreborn.reference.NBTConstants;
-import com.pengu.solarfluxreborn.reference.Reference;
-import com.pengu.solarfluxreborn.te.AbstractSolarPanelTileEntity;
-import com.pengu.solarfluxreborn.te.SolarPanelTileEntity;
 
 public class AbstractSolarPanelBlock extends SolarPanelBlock
 {
@@ -35,7 +35,7 @@ public class AbstractSolarPanelBlock extends SolarPanelBlock
 		this.cap = cap;
 		this.transfer = transfer;
 		this.maxGen = maxGen;
-		setCreativeTab(ModCreativeTab.MOD_TAB);
+		setCreativeTab(CreativeTabSFR.MOD_TAB);
 		setHardness(3.0F);
 		setHarvestLevel("pickaxe", 0);
 		setResistance(5.0F);

@@ -3,15 +3,15 @@ package com.pengu.solarfluxreborn.te.cable;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.google.common.base.Predicate;
+import com.pengu.hammercore.core.ext.TeslaAPI;
+import com.pengu.hammercore.vec.Cuboid6;
+
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.energy.CapabilityEnergy;
-
-import com.google.common.base.Predicate;
-import com.pengu.hammercore.ext.TeslaAPI;
-import com.pengu.hammercore.vec.Cuboid6;
 
 public class TileCustomCable extends TileAbstractCable implements Predicate<EnumFacing>
 {

@@ -1,5 +1,12 @@
 package com.pengu.solarfluxreborn.net;
 
+import com.pengu.hammercore.common.InterItemStack;
+import com.pengu.hammercore.common.utils.ItemStackUtil;
+import com.pengu.hammercore.net.packetAPI.iPacket;
+import com.pengu.hammercore.net.packetAPI.iPacketListener;
+import com.pengu.solarfluxreborn.items.UpgradeItem;
+import com.pengu.solarfluxreborn.te.SolarPanelTileEntity;
+
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.item.ItemStack;
@@ -8,14 +15,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 import net.minecraftforge.fml.relauncher.Side;
 
-import com.pengu.hammercore.common.InterItemStack;
-import com.pengu.hammercore.common.utils.ItemStackUtil;
-import com.pengu.hammercore.net.packetAPI.IPacket;
-import com.pengu.hammercore.net.packetAPI.IPacketListener;
-import com.pengu.solarfluxreborn.items.UpgradeItem;
-import com.pengu.solarfluxreborn.te.SolarPanelTileEntity;
-
-public class PacketHandleUpgradeClick implements IPacket, IPacketListener<PacketHandleUpgradeClick, IPacket>
+public class PacketHandleUpgradeClick implements iPacket, iPacketListener<PacketHandleUpgradeClick, iPacket>
 {
 	private BlockPos pos;
 	private int slot;
@@ -31,7 +31,7 @@ public class PacketHandleUpgradeClick implements IPacket, IPacketListener<Packet
 	}
 	
 	@Override
-	public IPacket onArrived(PacketHandleUpgradeClick packet, MessageContext context)
+	public iPacket onArrived(PacketHandleUpgradeClick packet, MessageContext context)
 	{
 		if(context.side == Side.SERVER)
 		{

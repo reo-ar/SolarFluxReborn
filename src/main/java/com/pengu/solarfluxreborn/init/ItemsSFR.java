@@ -151,7 +151,7 @@ public class ItemsSFR
 	public static Item register(Item item, String name)
 	{
 		item.setRegistryName(Reference.MOD_ID, name);
-		com.pengu.hammercore.init.ItemsHC.items.add(item);
+		com.pengu.hammercore.core.init.ItemsHC.items.add(item);
 		GameRegistry.findRegistry(Item.class).register(item);
 		return item;
 	}

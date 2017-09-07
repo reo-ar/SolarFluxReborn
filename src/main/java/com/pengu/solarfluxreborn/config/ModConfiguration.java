@@ -6,13 +6,6 @@ import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.util.List;
 
-import net.minecraft.nbt.CompressedStreamTools;
-import net.minecraft.nbt.NBTTagCompound;
-import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.common.config.Configuration;
-import net.minecraftforge.fml.client.event.ConfigChangedEvent;
-import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Lists;
 import com.pengu.solarfluxreborn.SolarFluxReborn;
@@ -21,6 +14,13 @@ import com.pengu.solarfluxreborn.blocks.BlockCable3200;
 import com.pengu.solarfluxreborn.blocks.BlockCable320000;
 import com.pengu.solarfluxreborn.reference.Reference;
 import com.pengu.solarfluxreborn.utility.MetricUnits;
+
+import net.minecraft.nbt.CompressedStreamTools;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.common.config.Configuration;
+import net.minecraftforge.fml.client.event.ConfigChangedEvent;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 public class ModConfiguration
 {
@@ -354,7 +354,7 @@ public class ModConfiguration
 	
 	protected static float getSolarThickness()
 	{
-		return solarThickness;
+		return RemoteConfigs.inherited ? RemoteConfigs.getSolarHeight() : solarThickness;
 	}
 	
 	@SubscribeEvent

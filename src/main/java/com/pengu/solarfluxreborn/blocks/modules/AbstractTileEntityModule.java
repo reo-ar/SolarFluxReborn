@@ -2,7 +2,7 @@ package com.pengu.solarfluxreborn.blocks.modules;
 
 import net.minecraft.tileentity.TileEntity;
 
-public abstract class AbstractTileEntityModule<T extends TileEntity> implements ITileEntityModule
+public abstract class AbstractTileEntityModule<T extends TileEntity> implements iTileEntityModule
 {
 	private final T mTileEntity;
 	

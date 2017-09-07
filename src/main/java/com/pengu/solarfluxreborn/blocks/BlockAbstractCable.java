@@ -1,5 +1,13 @@
 package com.pengu.solarfluxreborn.blocks;
 
+import com.pengu.hammercore.api.mhb.BlockTraceable;
+import com.pengu.hammercore.api.mhb.iCubeManager;
+import com.pengu.hammercore.common.utils.WorldUtil;
+import com.pengu.hammercore.vec.Cuboid6;
+import com.pengu.solarfluxreborn.creativetab.CreativeTabSFR;
+import com.pengu.solarfluxreborn.reference.Reference;
+import com.pengu.solarfluxreborn.te.cable.TileCustomCable;
+
 import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
@@ -12,15 +20,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
-import com.pengu.hammercore.api.mhb.BlockTraceable;
-import com.pengu.hammercore.api.mhb.ICubeManager;
-import com.pengu.hammercore.common.utils.WorldUtil;
-import com.pengu.hammercore.vec.Cuboid6;
-import com.pengu.solarfluxreborn.creativetab.ModCreativeTab;
-import com.pengu.solarfluxreborn.reference.Reference;
-import com.pengu.solarfluxreborn.te.cable.TileCustomCable;
-
-public class BlockAbstractCable extends BlockTraceable implements ITileEntityProvider, ICubeManager
+public class BlockAbstractCable extends BlockTraceable implements ITileEntityProvider, iCubeManager
 {
 	public BlockAbstractCable()
 	{
@@ -28,7 +28,7 @@ public class BlockAbstractCable extends BlockTraceable implements ITileEntityPro
 		setSoundType(SoundType.METAL);
 		setLightOpacity(255);
 		useNeighborBrightness = true;
-		setCreativeTab(ModCreativeTab.MOD_TAB);
+		setCreativeTab(CreativeTabSFR.MOD_TAB);
 		setHardness(3.0F);
 		setHarvestLevel("pickaxe", 0);
 		setResistance(5.0F);
