@@ -7,6 +7,8 @@ import tk.zeitheron.solarflux.InfoSF;
 import tk.zeitheron.solarflux.api.attribute.AttributeModMultiply;
 import tk.zeitheron.solarflux.block.SolarPanelTile;
 
+import javax.xml.bind.SchemaOutputResolver;
+
 public class ItemCapacityUpgrade extends UpgradeItem
 {
 	public ItemCapacityUpgrade()
@@ -15,8 +17,8 @@ public class ItemCapacityUpgrade extends UpgradeItem
 		setRegistryName(InfoSF.MOD_ID, "capacity_upgrade");
 	}
 	
-	public static final UUID CAPACITY_ATTRIBUTE_UUID = UUID.fromString("a85f5b2f-35e2b-e364f-338af-837a6b8f5a8f");
-	
+	public static final UUID CAPACITY_ATTRIBUTE_UUID = UUID.fromString("a85f5b2f-5e2f-364f-38af-837a6b8f5a8f");
+
 	@Override
 	public void update(SolarPanelTile tile, ItemStack stack, int amount)
 	{

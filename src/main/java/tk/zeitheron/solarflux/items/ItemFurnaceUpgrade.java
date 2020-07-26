@@ -11,6 +11,8 @@ import net.minecraft.tileentity.TileEntity;
 import tk.zeitheron.solarflux.InfoSF;
 import tk.zeitheron.solarflux.block.SolarPanelTile;
 
+import java.util.Objects;
+
 public class ItemFurnaceUpgrade extends UpgradeItem
 {
 	public ItemFurnaceUpgrade()
@@ -18,19 +20,20 @@ public class ItemFurnaceUpgrade extends UpgradeItem
 		super(1);
 		setRegistryName(InfoSF.MOD_ID, "furnace_upgrade");
 	}
-	
+
 	@Override
 	public void update(SolarPanelTile tile, ItemStack stack, int amount)
 	{
-		TileEntity t = tile.getWorld().getTileEntity(tile.getPos().down());
+		TileEntity t = Objects.requireNonNull(tile.getWorld()).getTileEntity(tile.getPos().down());
 		if(t instanceof AbstractFurnaceTileEntity)
 		{
 			AbstractFurnaceTileEntity tf = (AbstractFurnaceTileEntity) t;
-			
-			AbstractCookingRecipe irecipe = tf.getWorld().getRecipeManager().getRecipe((IRecipeType<AbstractCookingRecipe>) tf.recipeType, tf, tf.getWorld()).orElse(null);
-			
+
+			AbstractCookingRecipe irecipe = Objects.requireNonNull(tf.getWorld()).getRecipeManager().getRecipe((IRecipeType<AbstractCookingRecipe>) tf.recipeType, tf, tf.getWorld()).orElse(null);
+
 			if(tf.burnTime < 1 && canSmelt(tf, irecipe) && tile.energy >= 1000)
 			{
+				assert irecipe != null;
 				tf.recipesUsed = tf.burnTime = irecipe.getCookTime() + 1;
 				tile.energy -= 1000;
 			}

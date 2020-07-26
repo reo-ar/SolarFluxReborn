@@ -37,7 +37,7 @@ public class ItemsSF
 		{
 			try
 			{
-				items.register(Item.class.cast(f.get(null)));
+				items.register((Item) f.get(null));
 			} catch(Throwable err)
 			{
 				err.printStackTrace();

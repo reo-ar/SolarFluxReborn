@@ -15,7 +15,7 @@ public class ItemTransferRateUpgrade extends UpgradeItem
 		setRegistryName(InfoSF.MOD_ID, "transfer_rate_upgrade");
 	}
 	
-	public static final UUID TRANSFER_RATE_ATTRIBUTE_UUID = UUID.fromString("28575922-b562a-c364d-788af-337a6b8f5a8a");
+	public static final UUID TRANSFER_RATE_ATTRIBUTE_UUID = UUID.fromString("2857592b-562e-364d-88af-337a6b8f5a8a");
 	
 	@Override
 	public void update(SolarPanelTile tile, ItemStack stack, int amount)

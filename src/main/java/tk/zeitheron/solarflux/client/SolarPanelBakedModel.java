@@ -18,8 +18,11 @@ import tk.zeitheron.solarflux.InfoSF;
 import tk.zeitheron.solarflux.block.SolarPanelBlock;
 import tk.zeitheron.solarflux.block.SolarPanelTile;
 
+import javax.annotation.Nonnull;
+import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
 import java.util.function.Function;
@@ -37,8 +40,9 @@ public class SolarPanelBakedModel
 		this.block = spb;
 	}
 
+	@Nonnull
 	@Override
-	public List<BakedQuad> getQuads(BlockState state, Direction sideIn, Random rand, IModelData extraData)
+	public List<BakedQuad> getQuads(BlockState state, Direction sideIn, @Nonnull Random rand, @Nonnull IModelData extraData)
 	{
 		List<BakedQuad> quads = new ArrayList<>();
 		Direction[] sides = sideIn == null ? Direction.values() : new Direction[]{ sideIn };
@@ -66,7 +70,7 @@ public class SolarPanelBakedModel
 				if(world == null || pos == null)
 					return quads;
 
-				boolean west = false, east = false, north = false, south = false;
+				boolean west, east, north, south;
 
 				if(west = world.getBlockState(pos.west()).getBlock() != block)
 					quads.add(COOKER.bakeQuad( //
@@ -178,24 +182,24 @@ public class SolarPanelBakedModel
 		}
 	};
 
+	@Nonnull
 	@Override
+	@SuppressWarnings("deprecation")
 	public ItemCameraTransforms getItemCameraTransforms()
 	{
 		return new ItemCameraTransforms(getTransform(TransformType.THIRD_PERSON_LEFT_HAND), getTransform(TransformType.THIRD_PERSON_RIGHT_HAND), getTransform(TransformType.FIRST_PERSON_LEFT_HAND), getTransform(TransformType.FIRST_PERSON_RIGHT_HAND), getTransform(TransformType.HEAD), getTransform(TransformType.GUI), getTransform(TransformType.GROUND), getTransform(TransformType.FIXED));
 	}
 
+	@SuppressWarnings("deprecation")
 	public ItemTransformVec3f getTransform(TransformType type)
 	{
-		switch(type)
-		{
-			case GUI:
-				return new ItemTransformVec3f(new Vector3f(30, 45, 0), new Vector3f(0, 0, 0), new Vector3f(0.625F, 0.625F, 0.625F));
-			default:
-				break;
+		if (type == TransformType.GUI) {
+			return new ItemTransformVec3f(new Vector3f(30, 45, 0), new Vector3f(0, 0, 0), new Vector3f(0.625F, 0.625F, 0.625F));
 		}
 		return ItemTransformVec3f.DEFAULT;
 	}
 
+	@Nonnull
 	@Override
 	public TextureAtlasSprite getParticleTexture()
 	{
@@ -209,14 +213,14 @@ public class SolarPanelBakedModel
 	public TextureAtlasSprite t_base()
 	{
 		if(baseTx == null)
-			baseTx = new ResourceLocation(block.getRegistryName().getNamespace(), "blocks/" + block.getRegistryName().getPath() + "_base");
+			baseTx = new ResourceLocation(Objects.requireNonNull(block.getRegistryName()).getNamespace(), "blocks/" + block.getRegistryName().getPath() + "_base");
 		return spriteGetter.apply(baseTx);
 	}
 
 	public TextureAtlasSprite t_top()
 	{
 		if(topTx == null)
-			topTx = new ResourceLocation(block.getRegistryName().getNamespace(), "blocks/" + block.getRegistryName().getPath() + "_top");
+			topTx = new ResourceLocation(Objects.requireNonNull(block.getRegistryName()).getNamespace(), "blocks/" + block.getRegistryName().getPath() + "_top");
 		return spriteGetter.apply(topTx);
 	}
 
@@ -244,6 +248,7 @@ public class SolarPanelBakedModel
 		return false;
 	}
 
+	@Nonnull
 	@Override
 	public ItemOverrideList getOverrides()
 	{

@@ -4,6 +4,8 @@ import net.minecraft.item.ItemStack;
 import net.minecraftforge.items.SlotItemHandler;
 import tk.zeitheron.solarflux.block.SolarPanelTile;
 
+import javax.annotation.ParametersAreNonnullByDefault;
+
 public class SlotUpgrade extends SlotItemHandler
 {
 	SolarPanelTile tile;
@@ -15,6 +17,7 @@ public class SlotUpgrade extends SlotItemHandler
 	}
 	
 	@Override
+	@ParametersAreNonnullByDefault
 	public boolean isItemValid(ItemStack stack)
 	{
 		return tile.upgradeInventory.isItemValid(getSlotIndex(), stack);

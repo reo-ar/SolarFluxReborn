@@ -45,6 +45,9 @@ import tk.zeitheron.solarflux.panels.SolarPanels;
 import tk.zeitheron.solarflux.util.BlockPosFace;
 import tk.zeitheron.solarflux.util.SimpleInventory;
 
+import javax.annotation.Nonnull;
+import javax.annotation.ParametersAreNonnullByDefault;
+
 public class SolarPanelTile extends TileEntity implements ITickableTileEntity, INamedContainerProvider, IEnergyStorage
 {
 	public long energy;
@@ -80,7 +83,8 @@ public class SolarPanelTile extends TileEntity implements ITickableTileEntity, I
 		}
 		return c;
 	}
-	
+
+	@SuppressWarnings("unused")
 	public boolean isSameLevel(SolarPanelTile other)
 	{
 		if(other == null)
@@ -142,6 +146,7 @@ public class SolarPanelTile extends TileEntity implements ITickableTileEntity, I
 					ItemStack s = upgradeInventory.getStackInSlot(i);
 					s.copy();
 					upgradeInventory.setStackInSlot(i, ItemStack.EMPTY);
+					assert world != null;
 					if(!world.isRemote)
 						world.addEntity(new ItemEntity(world, pos.getX() + .5, pos.getY() + .5, pos.getZ() + .5, stack));
 				}
@@ -179,7 +184,8 @@ public class SolarPanelTile extends TileEntity implements ITickableTileEntity, I
 		
 		if(cache$seeSkyTimer > 0)
 			--cache$seeSkyTimer;
-		
+
+		assert world != null;
 		if(world.isRemote)
 			return;
 		
@@ -249,6 +255,7 @@ public class SolarPanelTile extends TileEntity implements ITickableTileEntity, I
 	public int getGeneration()
 	{
 		float eff = getInstance().computeSunIntensity(this);
+		assert world != null;
 		if(!world.isRemote)
 			sunIntensity = eff;
 		float energyGeneration = getInstance().gen * eff;
@@ -274,14 +281,15 @@ public class SolarPanelTile extends TileEntity implements ITickableTileEntity, I
 		if(cache$seeSkyTimer < 1)
 		{
 			cache$seeSkyTimer = 20;
-			cache$seeSky = world != null && world.getLightFor(LightType.SKY, pos) > 0 && pos != null ? world.canBlockSeeSky(pos) : false;
+			cache$seeSky = (world != null && world.getLightFor(LightType.SKY, pos) > 0 && pos != null) && world.canBlockSeeSky(pos);
 		}
 		return cache$seeSky;
 	}
 	
-	public static final ModelProperty<World> WORLD_PROP = new ModelProperty<World>();
-	public static final ModelProperty<BlockPos> POS_PROP = new ModelProperty<BlockPos>();
+	public static final ModelProperty<World> WORLD_PROP = new ModelProperty<>();
+	public static final ModelProperty<BlockPos> POS_PROP = new ModelProperty<>();
 	
+	@Nonnull
 	@Override
 	public IModelData getModelData()
 	{
@@ -302,10 +310,11 @@ public class SolarPanelTile extends TileEntity implements ITickableTileEntity, I
 		energy = nbt.getLong("Energy");
 	}
 	
-	LazyOptional chargeableItems, energyStorageTile;
+	LazyOptional<?> chargeableItems, energyStorageTile;
 	
+	@Nonnull
 	@Override
-	public <T> LazyOptional<T> getCapability(Capability<T> cap, Direction side)
+	public <T> LazyOptional<T> getCapability(@Nonnull Capability<T> cap, Direction side)
 	{
 		if(cap == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY)
 		{
@@ -321,6 +330,7 @@ public class SolarPanelTile extends TileEntity implements ITickableTileEntity, I
 		return super.getCapability(cap, side);
 	}
 	
+	@Nonnull
 	@Override
 	public CompoundNBT write(CompoundNBT compound)
 	{
@@ -349,12 +359,14 @@ public class SolarPanelTile extends TileEntity implements ITickableTileEntity, I
 	{
 		if(shape == null || voxelTimer <= 0)
 		{
+			assert world != null;
 			shape = block.recalcShape(world, pos);
 			voxelTimer = 20;
 		}
 		return shape;
 	}
 	
+	@Nonnull
 	@Override
 	public CompoundNBT getUpdateTag()
 	{
@@ -374,19 +386,22 @@ public class SolarPanelTile extends TileEntity implements ITickableTileEntity, I
 	{
 		readNBT(pkt.getNbtCompound());
 	}
-	
+
+	@SuppressWarnings("unused")
 	public void sync()
 	{
+		assert world != null;
 		BlockState state = world.getBlockState(pos);
 		world.notifyBlockUpdate(pos, state, state, 11);
 	}
 	
 	@Override
-	public Container createMenu(int windowId, PlayerInventory playerInv, PlayerEntity arg2)
+	public Container createMenu(int windowId, @Nonnull PlayerInventory playerInv, @Nonnull PlayerEntity arg2)
 	{
 		return new SolarPanelContainer(windowId, playerInv, this);
 	}
 	
+	@Nonnull
 	@Override
 	public ITextComponent getDisplayName()
 	{
@@ -425,13 +440,13 @@ public class SolarPanelTile extends TileEntity implements ITickableTileEntity, I
 	@Override
 	public int getEnergyStored()
 	{
-		return (int) Math.min(energy, (long) Integer.MAX_VALUE);
+		return (int) Math.min(energy, Integer.MAX_VALUE);
 	}
 	
 	@Override
 	public int getMaxEnergyStored()
 	{
-		return (int) Math.min(getInstance().cap, (long) Integer.MAX_VALUE);
+		return (int) Math.min(getInstance().cap, Integer.MAX_VALUE);
 	}
 	
 	@Override
@@ -450,6 +465,7 @@ public class SolarPanelTile extends TileEntity implements ITickableTileEntity, I
 	{
 		ItemStack stack = new ItemStack(item);
 		stack.setTag(new CompoundNBT());
+		assert stack.getTag() != null;
 		stack.getTag().putLong("Energy", energy - Math.round(energy * SolarPanels.LOOSE_ENERGY / 100D));
 		upgradeInventory.writeToNBT(stack.getTag(), "Upgrades");
 		chargeInventory.writeToNBT(stack.getTag(), "Chargeable");
@@ -460,6 +476,7 @@ public class SolarPanelTile extends TileEntity implements ITickableTileEntity, I
 	{
 		if(stack.hasTag())
 		{
+			assert stack.getTag() != null;
 			energy = stack.getTag().getLong("Energy");
 			upgradeInventory.readFromNBT(stack.getTag(), "Upgrades");
 			chargeInventory.readFromNBT(stack.getTag(), "Chargeable");

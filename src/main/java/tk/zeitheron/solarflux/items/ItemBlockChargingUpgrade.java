@@ -1,6 +1,7 @@
 package tk.zeitheron.solarflux.items;
 
 import java.util.List;
+import java.util.Objects;
 
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.item.ItemStack;
@@ -24,6 +25,8 @@ import tk.zeitheron.solarflux.block.SolarPanelTile;
 import tk.zeitheron.solarflux.util.BlockPosFace;
 import tk.zeitheron.solarflux.util.SimpleInventory;
 
+import javax.annotation.Nonnull;
+
 public class ItemBlockChargingUpgrade extends UpgradeItem
 {
 	public ItemBlockChargingUpgrade()
@@ -33,11 +36,12 @@ public class ItemBlockChargingUpgrade extends UpgradeItem
 	}
 	
 	@Override
-	public void addInformation(ItemStack stack, World worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn)
+	public void addInformation(@Nonnull ItemStack stack, World worldIn, @Nonnull List<ITextComponent> tooltip, @Nonnull ITooltipFlag flagIn)
 	{
 		if(hasEffect(stack))
 		{
 			CompoundNBT nbt = stack.getTag();
+			assert nbt != null;
 			if(nbt.contains("Dim", NBT.TAG_STRING))
 				tooltip.add(new StringTextComponent("Dimension: " + nbt.getString("Dim")));
 			tooltip.add(new StringTextComponent("Facing: " + Direction.values()[nbt.getByte("Face")]));
@@ -46,6 +50,7 @@ public class ItemBlockChargingUpgrade extends UpgradeItem
 		}
 	}
 	
+	@Nonnull
 	@Override
 	public ActionResultType onItemUse(ItemUseContext context)
 	{
@@ -56,10 +61,9 @@ public class ItemBlockChargingUpgrade extends UpgradeItem
 			CompoundNBT nbt = held.getTag();
 			if(nbt == null)
 				held.setTag(nbt = new CompoundNBT());
-			nbt.putString("Dim", context.getWorld().getDimension().getType().getRegistryName().toString());
+			nbt.putString("Dim", Objects.requireNonNull(context.getWorld().getDimension().getType().getRegistryName()).toString());
 			nbt.putLong("Pos", context.getPos().toLong());
 			nbt.putByte("Face", (byte) context.getFace().ordinal());
-			estorage = null;
 			context.getWorld().playSound(null, context.getPos(), SoundEvents.ENTITY_PLAYER_LEVELUP, SoundCategory.PLAYERS, .25F, 1.8F);
 			return ActionResultType.SUCCESS;
 		}).orElse(ActionResultType.FAIL) : ActionResultType.FAIL;
@@ -69,7 +73,9 @@ public class ItemBlockChargingUpgrade extends UpgradeItem
 	@OnlyIn(Dist.CLIENT)
 	public boolean hasEffect(ItemStack stack)
 	{
-		return stack.hasTag() && stack.getTag().contains("Pos", NBT.TAG_LONG) && stack.getTag().contains("Face", NBT.TAG_BYTE);
+		if (!stack.hasTag()) return false;
+		assert stack.getTag() != null;
+		return stack.getTag().contains("Pos", NBT.TAG_LONG) && stack.getTag().contains("Face", NBT.TAG_BYTE);
 	}
 	
 	@Override
@@ -77,7 +83,9 @@ public class ItemBlockChargingUpgrade extends UpgradeItem
 	{
 		BlockPos pos;
 		TileEntity t;
-		return stack.hasTag() && stack.getTag().contains("Pos", NBT.TAG_LONG) && stack.getTag().contains("Face", NBT.TAG_BYTE) && (!stack.getTag().contains("Dim", NBT.TAG_STRING) || tile.getWorld().getDimension().getType().getRegistryName().toString().equals(stack.getTag().getString("Dim"))) && tile.getPos().distanceSq(BlockPos.fromLong(stack.getTag().getLong("Pos"))) <= 256D && (pos = BlockPos.fromLong(stack.getTag().getLong("Pos"))) != null && (t = tile.getWorld().getTileEntity(pos)) != null && t.getCapability(CapabilityEnergy.ENERGY, Direction.values()[stack.getTag().getByte("Face")]).isPresent();
+		if (!stack.hasTag()) return false;
+		assert stack.getTag() != null;
+		return stack.getTag().contains("Pos", NBT.TAG_LONG) && stack.getTag().contains("Face", NBT.TAG_BYTE) && (!stack.getTag().contains("Dim", NBT.TAG_STRING) || Objects.requireNonNull(Objects.requireNonNull(tile.getWorld()).getDimension().getType().getRegistryName()).toString().equals(stack.getTag().getString("Dim"))) && tile.getPos().distanceSq(BlockPos.fromLong(stack.getTag().getLong("Pos"))) <= 256D && (pos = BlockPos.fromLong(stack.getTag().getLong("Pos"))) != null && (t = Objects.requireNonNull(tile.getWorld()).getTileEntity(pos)) != null && t.getCapability(CapabilityEnergy.ENERGY, Direction.values()[stack.getTag().getByte("Face")]).isPresent();
 	}
 	
 	@Override
@@ -90,8 +98,9 @@ public class ItemBlockChargingUpgrade extends UpgradeItem
 	public void update(SolarPanelTile tile, ItemStack stack, int amount)
 	{
 		CompoundNBT nbt = stack.getTag();
-		if(tile.getWorld().getDayTime() % 20L == 0L)
+		if(Objects.requireNonNull(tile.getWorld()).getDayTime() % 20L == 0L)
 		{
+			assert nbt != null;
 			BlockPos pos = BlockPos.fromLong(nbt.getLong("Pos"));
 			
 			double d;

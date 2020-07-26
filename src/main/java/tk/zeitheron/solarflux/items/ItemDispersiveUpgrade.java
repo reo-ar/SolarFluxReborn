@@ -8,6 +8,8 @@ import tk.zeitheron.solarflux.block.SolarPanelTile;
 import tk.zeitheron.solarflux.util.charging.ItemChargeHelper;
 import tk.zeitheron.solarflux.util.charging.fe.FECharge;
 
+import java.util.Objects;
+
 public class ItemDispersiveUpgrade extends UpgradeItem
 {
 	public ItemDispersiveUpgrade()
@@ -15,11 +17,10 @@ public class ItemDispersiveUpgrade extends UpgradeItem
 		super(1);
 		setRegistryName(InfoSF.MOD_ID, "dispersive_upgrade");
 	}
-	
 	@Override
 	public void update(SolarPanelTile tile, ItemStack stack, int amount)
 	{
-		for(ServerPlayerEntity mp : tile.getWorld().getEntitiesWithinAABB(ServerPlayerEntity.class, new AxisAlignedBB(tile.getPos()).grow(16)))
+		for(ServerPlayerEntity mp : Objects.requireNonNull(tile.getWorld()).getEntitiesWithinAABB(ServerPlayerEntity.class, new AxisAlignedBB(tile.getPos()).grow(16)))
 		{
 			float mod = Math.max(0, 1F - (float) (mp.getDistanceSq(tile.getPos().getX() + 0.5F, tile.getPos().getY() + 0.5F, tile.getPos().getZ() + 0.5F) / 256));
 			tile.transfer.setBaseValue(tile.getInstance().transfer);

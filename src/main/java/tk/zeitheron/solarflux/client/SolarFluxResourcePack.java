@@ -9,11 +9,14 @@ import net.minecraft.util.ResourceLocation;
 import tk.zeitheron.solarflux.block.SolarPanelBlock;
 import tk.zeitheron.solarflux.panels.SolarPanels;
 
+import javax.annotation.Nonnull;
+import javax.annotation.ParametersAreNonnullByDefault;
 import java.io.*;
 import java.util.*;
 import java.util.function.BooleanSupplier;
 import java.util.function.Predicate;
 
+@SuppressWarnings("unused")
 public class SolarFluxResourcePack
 		implements IResourcePack
 {
@@ -53,6 +56,7 @@ public class SolarFluxResourcePack
 			SolarPanelBlock blk = si.getBlock();
 			ResourceLocation reg = blk.getRegistryName();
 
+			assert reg != null;
 			ResourceLocation blockstate = new ResourceLocation(reg.getNamespace(), "blockstates/" + reg.getPath() + ".json");
 			ResourceLocation models_block = new ResourceLocation(reg.getNamespace(), "models/" + reg.getPath() + ".json");
 			ResourceLocation models_item = new ResourceLocation(reg.getNamespace(), "models/item/" + reg.getPath() + ".json");
@@ -90,19 +94,22 @@ public class SolarFluxResourcePack
 	{
 	}
 
+	@Nonnull
+	@ParametersAreNonnullByDefault
 	@Override
 	public InputStream getRootResourceStream(String fileName) throws IOException
 	{
 		throw new FileNotFoundException(fileName);
 	}
 
+	@Nonnull
+	@ParametersAreNonnullByDefault
 	@Override
 	public InputStream getResourceStream(ResourcePackType type, ResourceLocation location) throws IOException
 	{
 		try
 		{
-			InputStream in = resourceMap.get(location).create();
-			return in;
+			return resourceMap.get(location).create();
 		} catch(RuntimeException e)
 		{
 			if(e.getCause() instanceof IOException)
@@ -111,12 +118,15 @@ public class SolarFluxResourcePack
 		}
 	}
 
+	@Nonnull
+	@ParametersAreNonnullByDefault
 	@Override
 	public Collection<ResourceLocation> getAllResourceLocations(ResourcePackType type, String namespaceIn, String pathIn, int maxDepthIn, Predicate<String> filterIn)
 	{
 		return Collections.emptyList();
 	}
 
+	@ParametersAreNonnullByDefault
 	@Override
 	public boolean resourceExists(ResourcePackType type, ResourceLocation location)
 	{
@@ -124,6 +134,8 @@ public class SolarFluxResourcePack
 		return (s = resourceMap.get(location)) != null && s.exists();
 	}
 
+	@Nonnull
+	@ParametersAreNonnullByDefault
 	@Override
 	public Set<String> getResourceNamespaces(ResourcePackType type)
 	{
@@ -139,13 +151,14 @@ public class SolarFluxResourcePack
 		return deserializer.deserialize(obj);
 	}
 
+	@Nonnull
 	@Override
 	public String getName()
 	{
 		return "Solar Flux Generated Resources";
 	}
 
-	public static interface IResourceStreamSupplier
+	public interface IResourceStreamSupplier
 	{
 		static IResourceStreamSupplier create(BooleanSupplier exists, IIOSupplier<InputStream> streamable)
 		{
@@ -171,7 +184,7 @@ public class SolarFluxResourcePack
 	}
 
 	@FunctionalInterface
-	public static interface IIOSupplier<T>
+	public interface IIOSupplier<T>
 	{
 		T get() throws IOException;
 	}

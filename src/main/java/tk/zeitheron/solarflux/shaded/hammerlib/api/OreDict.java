@@ -19,13 +19,14 @@ public class OreDict
 {
 	private static final Map<String, ResourceLocation> MAPPING = new HashMap<>();
 	private static boolean hasInit;
-	
+
+	@SuppressWarnings("unused")
 	public static void register(String key, String value)
 	{
 		register(key, new ResourceLocation(value.contains(":") ? value : ("forge:" + value)));
 	}
 	
-	public static void register(String key, Tag tag)
+	public static void register(String key, Tag<?> tag)
 	{
 		if(tag != null)
 			register(key, tag.getId());

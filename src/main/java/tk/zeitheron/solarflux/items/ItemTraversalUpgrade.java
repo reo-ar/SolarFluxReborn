@@ -2,6 +2,7 @@ package tk.zeitheron.solarflux.items;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
@@ -25,7 +26,7 @@ public class ItemTraversalUpgrade extends UpgradeItem
 	@Override
 	public void update(SolarPanelTile tile, ItemStack stack, int amount)
 	{
-		if(tile.getWorld().getDayTime() % 20L == 0L)
+		if(Objects.requireNonNull(tile.getWorld()).getDayTime() % 20L == 0L)
 		{
 			cache.clear();
 			tile.traversal.clear();
@@ -44,7 +45,7 @@ public class ItemTraversalUpgrade extends UpgradeItem
 				BlockPos p = pos.offset(face);
 				if(p.distanceSq(cache.get(0)) > 25D)
 					continue;
-				TileEntity t = tile.getWorld().getTileEntity(p);
+				TileEntity t = Objects.requireNonNull(tile.getWorld()).getTileEntity(p);
 				if(t != null)
 					t.getCapability(CapabilityEnergy.ENERGY, face.getOpposite()).filter(IEnergyStorage::canReceive).ifPresent(e ->
 					{

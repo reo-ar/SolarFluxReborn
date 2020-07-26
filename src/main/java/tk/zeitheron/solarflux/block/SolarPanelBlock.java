@@ -23,6 +23,8 @@ import net.minecraftforge.fml.network.NetworkHooks;
 import tk.zeitheron.solarflux.items.UpgradeItem;
 import tk.zeitheron.solarflux.panels.SolarPanel;
 
+import javax.annotation.Nonnull;
+import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -38,11 +40,11 @@ public class SolarPanelBlock
 	}
 
 	@Override
-	public void onBlockPlacedBy(World worldIn, BlockPos pos, BlockState state, LivingEntity placer, ItemStack stack)
+	public void onBlockPlacedBy(@Nonnull World worldIn, @Nonnull BlockPos pos, @Nonnull BlockState state, LivingEntity placer, ItemStack stack)
 	{
 		if(stack.hasTag())
 		{
-			SolarPanelTile spt = null;
+			SolarPanelTile spt;
 			TileEntity tile = worldIn.getTileEntity(pos);
 			if(tile instanceof SolarPanelTile)
 				spt = (SolarPanelTile) tile;
@@ -51,12 +53,13 @@ public class SolarPanelBlock
 				spt = (SolarPanelTile) createNewTileEntity(worldIn);
 				worldIn.setTileEntity(pos, spt);
 			}
+			assert spt != null;
 			spt.loadFromItem(stack);
 		}
 	}
 
 	@Override
-	public void onBlockHarvested(World worldIn, BlockPos pos, BlockState state, PlayerEntity player)
+	public void onBlockHarvested(@Nonnull World worldIn, @Nonnull BlockPos pos, @Nonnull BlockState state, @Nonnull PlayerEntity player)
 	{
 		if(!canHarvestBlock(state, worldIn, pos, player))
 		{
@@ -79,19 +82,27 @@ public class SolarPanelBlock
 		super.onBlockHarvested(worldIn, pos, state, player);
 	}
 
+	@Nonnull
 	@Override
+	@ParametersAreNonnullByDefault
+	@SuppressWarnings("deprecation")
 	public BlockRenderType getRenderType(BlockState p_149645_1_)
 	{
 		return BlockRenderType.MODEL;
 	}
 
 	@Override
+	@ParametersAreNonnullByDefault
+	@SuppressWarnings("deprecation")
 	public boolean isNormalCube(BlockState state, IBlockReader worldIn, BlockPos pos)
 	{
 		return false;
 	}
 
+	@Nonnull
 	@Override
+	@ParametersAreNonnullByDefault
+	@SuppressWarnings("deprecation")
 	public VoxelShape getShape(BlockState state, IBlockReader world, BlockPos pos, ISelectionContext context)
 	{
 		TileEntity tile = world.getTileEntity(pos);
@@ -102,6 +113,8 @@ public class SolarPanelBlock
 	}
 
 	@Override
+	@ParametersAreNonnullByDefault
+	@SuppressWarnings("deprecation")
 	public void neighborChanged(BlockState state, World worldIn, BlockPos pos, Block blockIn, BlockPos fromPos, boolean isMoving)
 	{
 		super.neighborChanged(state, worldIn, pos, blockIn, fromPos, isMoving);
@@ -116,7 +129,7 @@ public class SolarPanelBlock
 		VoxelShape baseShape = VoxelShapes.create(0, 0, 0, 1, panel.networkData.height, 1);
 		List<VoxelShape> shapes = new ArrayList<>(8);
 
-		boolean west = false, east = false, north = false, south = false;
+		boolean west, east, north, south;
 
 		float h = panel.getPanelData().height, h2 = h + 0.25F / 16F;
 
@@ -144,10 +157,13 @@ public class SolarPanelBlock
 		if(west || south || world.getBlockState(pos.west().south()).getBlock() != this)
 			shapes.add(VoxelShapes.create(0, h, 15 / 16F, 1 / 16F, h2, 1));
 
-		return VoxelShapes.or(baseShape, shapes.toArray(new VoxelShape[shapes.size()]));
+		return VoxelShapes.or(baseShape, shapes.toArray(new VoxelShape[0]));
 	}
 
+	@Nonnull
 	@Override
+	@ParametersAreNonnullByDefault
+	@SuppressWarnings("deprecation")
 	public ActionResultType onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit)
 	{
 		TileEntity te = worldIn.getTileEntity(pos);
@@ -197,18 +213,24 @@ public class SolarPanelBlock
 
 	@Override
 	@OnlyIn(Dist.CLIENT)
+	@ParametersAreNonnullByDefault
+	@SuppressWarnings("deprecation")
 	public boolean isSideInvisible(BlockState state, BlockState adjacentBlockState, Direction side)
 	{
 		return adjacentBlockState.getBlock() == state.getBlock() && side != Direction.UP;
 	}
 
 	@Override
+	@ParametersAreNonnullByDefault
+	@SuppressWarnings("deprecation")
 	public boolean hasComparatorInputOverride(BlockState state)
 	{
 		return true;
 	}
 
 	@Override
+	@ParametersAreNonnullByDefault
+	@SuppressWarnings("deprecation")
 	public int getComparatorInputOverride(BlockState blockState, World worldIn, BlockPos pos)
 	{
 		TileEntity tile = worldIn.getTileEntity(pos);
@@ -222,6 +244,7 @@ public class SolarPanelBlock
 	}
 
 	@Override
+	@ParametersAreNonnullByDefault
 	public TileEntity createNewTileEntity(IBlockReader worldIn)
 	{
 		SolarPanelTile tile = new SolarPanelTile();

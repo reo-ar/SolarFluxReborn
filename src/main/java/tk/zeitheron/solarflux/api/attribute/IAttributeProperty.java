@@ -5,6 +5,7 @@ import java.util.UUID;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraftforge.common.util.INBTSerializable;
 
+@SuppressWarnings("unused")
 public interface IAttributeProperty extends INBTSerializable<CompoundNBT>
 {
 	double getValue();
@@ -16,13 +17,13 @@ public interface IAttributeProperty extends INBTSerializable<CompoundNBT>
 	
 	default int getValueI()
 	{
-		return (int) Math.min(getValueL(), (long) Integer.MAX_VALUE);
+		return (int) Math.min(getValueL(), Integer.MAX_VALUE);
 	}
 	
 	double getBaseValue();
 	
 	void setBaseValue(double value);
-	
+
 	IAttributeMod getModifier(UUID uuid);
 	
 	IAttributeMod removeModifier(UUID uuid);
